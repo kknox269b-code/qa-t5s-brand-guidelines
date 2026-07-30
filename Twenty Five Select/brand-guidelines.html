@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twenty Five Select — Brand Guidelines</title>
+<style>
+  @font-face{ font-family:'TS Impact'; src:url('Typography/Impact.ttf') format('truetype'); }
+
+  :root{
+    --bg:#0B0B0E; --card:#151519; --card2:#1C1C21; --stroke:#2A2A31;
+    --gold:#F2A93D; --blue:#3B7DF0; --green:#3FAE6B; --paper:#F4F4F5; --ink:#0B0B0E;
+    --line:rgba(255,255,255,.10); --line-light:rgba(11,11,14,.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--paper); font-family:"Segoe UI",-apple-system,Arial,sans-serif; line-height:1.5;}
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+
+  .grid-wrap{position:relative; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .grid-wrap::before{content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:repeating-linear-gradient(90deg, transparent 0 24.9%, var(--line) 24.9% 25%, transparent 25%);
+  }
+  .grid-wrap.light{border-color:var(--line-light);}
+  .grid-wrap.light::before{background-image:repeating-linear-gradient(90deg, transparent 0 24.9%, var(--line-light) 24.9% 25%, transparent 25%);}
+
+  .navbtn{position:fixed; top:18px; left:18px; z-index:80; width:46px; height:46px; border-radius:50%; border:none; background:var(--gold); color:#0B0B0E; font-size:20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.4);}
+  .navmenu{position:fixed; top:74px; left:18px; z-index:80; background:var(--card); border:1px solid var(--stroke); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5); padding:8px; display:none; flex-direction:column; min-width:200px;}
+  .navmenu.open{display:flex;}
+  .navmenu a{padding:10px 14px; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.04em; border-radius:8px; text-decoration:none; color:var(--paper);}
+  .navmenu a:hover{background:var(--card2);}
+
+  .hero{position:relative; overflow:hidden; background:radial-gradient(120% 100% at 20% 0%, #17171d 0%, #0B0B0E 60%); min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:0 8vw;}
+  .eyebrow{font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 22px;}
+  .hero h1{font-family:'TS Impact',Arial,sans-serif; font-weight:400; font-size:clamp(44px,7.5vw,110px); line-height:.98; margin:0 0 28px; letter-spacing:.01em; text-wrap:balance;}
+  .hero h1 em{font-style:normal; color:var(--gold);}
+  .hero p{font-size:clamp(16px,1.6vw,22px); max-width:48ch; color:#B8B8C2; margin:0;}
+  .hero-mark{position:absolute; right:8vw; top:50%; transform:translateY(-50%); width:min(16vw,180px); opacity:.95;}
+
+  .tiles{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:minmax(220px,auto);}
+  @media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr);}}
+  .tile{position:relative; border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; color:#fff; overflow:hidden; transition:transform .18s ease;}
+  .tile:hover{transform:scale(1.015);}
+  .tile h3{margin:0; font-family:'TS Impact',sans-serif; font-weight:400; font-size:26px; letter-spacing:.01em;}
+  .tile span{font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; opacity:.8;}
+  .t-logo{background:#151519;}
+  .t-color{background:var(--gold); color:#0B0B0E;}
+  .t-type{background:var(--blue);}
+  .t-voice{background:#151519;}
+  .t-imagery{background:var(--green); color:#0B0B0E;}
+  .t-rules{background:#2A2A31;}
+  .t-clear{background:var(--paper); color:var(--ink); grid-column:span 2;}
+  .t-clear h3{font-size:32px; font-family:'TS Impact',sans-serif; font-weight:400;}
+  .tile-icon{font-size:52px; opacity:.9; align-self:flex-end;}
+
+  section{padding:120px 8vw; position:relative;}
+  .section-eyebrow{font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:0 0 18px;}
+  h2.big{font-family:'TS Impact',sans-serif; font-weight:400; font-size:clamp(36px,5.5vw,76px); line-height:1.04; margin:0 0 40px; max-width:18ch;}
+  .lede{font-size:clamp(16px,1.4vw,20px); max-width:60ch; color:#B8B8C2; margin:0 0 56px;}
+  .lede.on-light{color:#3A3A44;}
+
+  .logo-primary{background:#151519; border:1px solid var(--stroke); border-radius:20px; padding:80px 60px; display:flex; align-items:center; justify-content:center; margin-bottom:40px;}
+  .logo-primary img{max-width:480px; width:100%;}
+  .swatch-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:56px;}
+  @media (max-width:900px){.swatch-row{grid-template-columns:repeat(2,1fr);}}
+  .mark-tile{min-width:0; overflow:hidden; border-radius:16px; padding:28px; display:flex; align-items:center; justify-content:center; aspect-ratio:1;}
+  .mark-tile img{width:55%; max-width:100%; height:auto;}
+  .mb-black{background:#0B0B0E; border:1px solid var(--stroke);} .mb-gold{background:var(--gold);} .mb-blue{background:var(--blue);} .mb-paper{background:#fff;}
+  .rules-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:800px){.rules-grid{grid-template-columns:1fr;}}
+  .rule-card{border:1px solid var(--stroke); border-radius:16px; padding:28px;}
+  .rule-card h4{margin:0 0 14px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;}
+  .rule-card.do h4{color:var(--green);}
+  .rule-card.dont h4{color:#E5484D;}
+  .rule-card ul{margin:0; padding-left:18px; font-size:14.5px; line-height:1.7; color:#B8B8C2;}
+
+  .color-hero{color:#0B0B0E;}
+  .color-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-bottom:56px; border-radius:16px; overflow:hidden;}
+  @media (max-width:800px){.color-grid{grid-template-columns:repeat(2,1fr);}}
+  .color-chip{aspect-ratio:1; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:#fff;}
+  .color-chip b{font-size:15px; text-transform:uppercase; letter-spacing:.04em;}
+  .color-chip span{font-size:13px; font-family:ui-monospace,monospace; opacity:.85; margin-top:4px;}
+  .c-gold{background:var(--gold); color:#0B0B0E;} .c-blue{background:var(--blue);}
+  .c-green{background:var(--green); color:#0B0B0E;} .c-black{background:#0B0B0E;}
+  .c-card{background:var(--card);} .c-card2{background:var(--card2);}
+  .c-paper{background:var(--paper); color:var(--ink);} .c-white{background:#fff; color:var(--ink);}
+  .side-strip{display:flex; gap:0; border-radius:14px; overflow:hidden; margin-top:8px;}
+  .side-strip div{flex:1; padding:22px 16px; font-size:13px; font-weight:700; text-align:center;}
+
+  .type-tier{margin-bottom:70px;}
+  .type-tier h4{font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#8a8a94; margin:0 0 26px;}
+  .specimen{border-top:1px solid var(--line); padding:26px 0; display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .specimen .word{font-size:clamp(28px,4vw,52px); line-height:1;}
+  .specimen .meta{font-size:12.5px; color:#8a8a94; font-family:ui-monospace,monospace; white-space:nowrap;}
+  .type-note{border:1px dashed var(--stroke); border-radius:14px; padding:22px 26px; font-size:14px; color:#B8B8C2; margin-top:8px;}
+
+  .voice-light{background:var(--paper); color:var(--ink);}
+  .voice-light .section-eyebrow{color:#B5342E;}
+  .quote-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line-light); border-radius:14px; overflow:hidden;}
+  @media (max-width:900px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-card{background:#fff; padding:32px 26px;}
+  .quote-card p{font-size:19px; font-weight:800; margin:0 0 8px;}
+  .quote-card span{font-size:11.5px; color:#8a8a94; text-transform:uppercase; letter-spacing:.06em;}
+  .floor-list{margin-top:56px; display:flex; gap:12px; flex-wrap:wrap;}
+  .floor-chip{border:1px solid var(--line-light); border-radius:999px; padding:10px 18px; font-size:13px; text-decoration:line-through; color:#6a6a74;}
+
+  .imagery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-bottom:56px; border-radius:14px; overflow:hidden;}
+  @media (max-width:900px){.imagery-grid{grid-template-columns:repeat(2,1fr);}}
+  .imagery-card{aspect-ratio:3/4; color:#fff; padding:18px; display:flex; flex-direction:column; justify-content:flex-end;}
+  .imagery-card b{font-size:12.5px; text-transform:uppercase; letter-spacing:.04em;}
+  .imagery-card span{font-size:11px; opacity:.8; margin-top:4px;}
+  .i1{background:linear-gradient(160deg,#151519,#0B0B0E);}
+  .i2{background:linear-gradient(160deg,#F2A93D,#8a5c19); color:#0B0B0E;}
+  .i3{background:linear-gradient(160deg,#3B7DF0,#1c3f8a);}
+  .i4{background:linear-gradient(160deg,#3FAE6B,#1c5c37); color:#0B0B0E;}
+
+  footer{padding:60px 8vw 100px; font-size:13px; color:#8a8a94; border-top:1px solid var(--line);}
+  .back-top{display:inline-block; margin-top:16px; font-weight:800; text-decoration:none; color:var(--gold);}
+</style>
+</head>
+<body>
+
+<button class="navbtn" onclick="document.getElementById('navmenu').classList.toggle('open')">&#9776;</button>
+<div class="navmenu" id="navmenu">
+  <a href="#logo">Logo</a>
+  <a href="#color">Color</a>
+  <a href="#type">Typography</a>
+  <a href="#voice">Voice &amp; Tone</a>
+  <a href="#imagery">Imagery</a>
+  <a href="../../../qa-ts-brand-site/index.html">&larr; Strategy Doc</a>
+</div>
+
+<div class="hero grid-wrap" style="border:none;">
+  <p class="eyebrow">Brand Guidelines &middot; v1</p>
+  <h1>What recruiting<br>should have <em>been</em>.</h1>
+  <p>Verified, not vouched for. Every rule below exists to protect that one claim — the mark, the palette, the type, the voice, and the imagery that make a marketplace feel honest.</p>
+  <img class="hero-mark" src="Logos/25 Select Logo 2.png" alt="Twenty Five Select numeral mark">
+</div>
+
+<div class="tiles">
+  <a class="tile t-logo" href="#logo"><span>01</span><h3>Logo</h3><div class="tile-icon">2</div></a>
+  <a class="tile t-color" href="#color"><span>02</span><h3>Color</h3><div class="tile-icon">&#9679;</div></a>
+  <a class="tile t-type" href="#type"><span>03</span><h3>Typography</h3><div class="tile-icon">Aa</div></a>
+  <a class="tile t-voice" href="#voice"><span>04</span><h3>Voice &amp; Tone</h3><div class="tile-icon">&#8220;&#8221;</div></a>
+  <a class="tile t-imagery" href="#imagery"><span>05</span><h3>Imagery</h3><div class="tile-icon">&#9634;</div></a>
+  <a class="tile t-rules" href="#logo"><span>06</span><h3>Usage Rules</h3><div class="tile-icon">&#128274;</div></a>
+  <div class="tile t-clear"><h3>Gold is the athlete side. Blue is the coach side. They never mix in one ad.</h3><span>The One Rule</span></div>
+</div>
+
+<section id="logo" class="grid-wrap">
+  <p class="section-eyebrow">01 &middot; System</p>
+  <h2 class="big">One mark, two roles: full lockup and the numeral alone.</h2>
+  <p class="lede">The "2" carries the brand on its own in tight spaces — app icons, social avatars, favicons. The full lockup is for anywhere there's room to say the name.</p>
+
+  <div class="logo-primary">
+    <img src="Logos/Twenty Five Select Logo.png" alt="Twenty Five Select primary lockup">
+  </div>
+
+  <div class="swatch-row">
+    <div class="mark-tile mb-black"><img src="Logos/25 Select Logo 2.png" alt="Numeral mark on black"></div>
+    <div class="mark-tile mb-gold"><img src="Logos/25 Select Logo 2.png" alt="Numeral mark on gold" style="filter:brightness(0);"></div>
+    <div class="mark-tile mb-paper"><img src="Logos/25 Select Logo 2.png" alt="Numeral mark on white"></div>
+    <div class="mark-tile mb-blue"><img src="Logos/25 Select Logo 2.png" alt="Numeral mark on blue"></div>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Use the gold mark on black, white, or blue backgrounds</li>
+        <li>Drop to the numeral-only mark below 200px wide — the full lockup stops being legible</li>
+        <li>Keep clear space equal to the height of the "2" on all sides</li>
+        <li>Pair gold accents with athlete-side content, blue with coach-side — never both in one lockup</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Recolor the mark outside gold, black, white, or blue</li>
+        <li>Add a background shape, glow, or shadow behind it</li>
+        <li>Imply an existing track record with the mark — no "trusted by" badges until there's a real one</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="color" class="color-hero" style="background:var(--gold);">
+  <p class="section-eyebrow" style="color:#0B0B0E;">02 &middot; System</p>
+  <h2 class="big" style="color:#0B0B0E;">Near-black, gold, and blue. Nothing else carries meaning.</h2>
+  <p class="lede on-light">Near-black is the constant stage. Gold means athlete. Blue means coach. Green is reserved for the platform's own success states — never used in ad creative.</p>
+
+  <div class="color-grid">
+    <div class="color-chip c-gold"><b>Gold</b><span>#F2A93D</span></div>
+    <div class="color-chip c-blue"><b>Blue</b><span>#3B7DF0</span></div>
+    <div class="color-chip c-green"><b>Green</b><span>#3FAE6B</span></div>
+    <div class="color-chip c-black"><b>Near-Black</b><span>#0B0B0E</span></div>
+    <div class="color-chip c-card"><b>Card</b><span>#151519</span></div>
+    <div class="color-chip c-card2"><b>Card 2</b><span>#1C1C21</span></div>
+    <div class="color-chip c-paper"><b>Paper</b><span>#F4F4F5</span></div>
+    <div class="color-chip c-white"><b>White</b><span>#FFFFFF</span></div>
+  </div>
+
+  <div class="side-strip">
+    <div style="background:#F2A93D; color:#0B0B0E;">Athlete side<br>Gold, always</div>
+    <div style="background:#3B7DF0; color:#fff;">Coach side<br>Blue, always</div>
+    <div style="background:linear-gradient(90deg,#F2A93D,#3B7DF0); color:#fff;">Both sides, unified<br>Month 1 &amp; Month 5 only</div>
+  </div>
+</section>
+
+<section id="type" class="grid-wrap">
+  <p class="section-eyebrow">03 &middot; System</p>
+  <h2 class="big">One committed display face. Everything else stays quiet.</h2>
+  <p class="lede">Twenty Five Select's type system is younger than Quarter Athletic's — Impact is the one display face locked in so far, reserved for stat numbers and short, punchy badges. Body copy runs on a clean system sans, deliberately unremarkable so the real UI screenshots stay the visual hero.</p>
+
+  <div class="type-tier">
+    <h4>Display — stat numbers, short badges only</h4>
+    <div class="specimen"><span class="word" style="font-family:'TS Impact';">100% VERIFIED</span><span class="meta">Impact.ttf</span></div>
+    <div class="specimen"><span class="word" style="font-family:'TS Impact';">SEE WHY IT MATCHED</span><span class="meta">Impact.ttf</span></div>
+  </div>
+
+  <div class="type-tier">
+    <h4>Body &amp; UI — always</h4>
+    <div class="specimen"><span class="word" style="font-weight:700;">Aa Bb Cc — System Sans</span><span class="meta">Segoe UI / system-ui</span></div>
+    <div class="type-note">This tier is intentionally underbuilt. As the product's own UI type system matures, that pairing should become the canonical body face here too — don't introduce a third display font before then.</div>
+  </div>
+</section>
+
+<section id="voice" class="voice-light">
+  <p class="section-eyebrow">04 &middot; System</p>
+  <h2 class="big">No black box. Say the mechanism, not just the promise.</h2>
+  <p class="lede on-light">Every headline names the actual thing that makes it true — a human reviewer, a real factor score, a real screenshot. Never a vague trust claim standing alone.</p>
+
+  <div class="quote-grid">
+    <div class="quote-card"><p>"Real Recruiting. No Noise."</p><span>Month 1 — Hero Statement</span></div>
+    <div class="quote-card"><p>"See Why It Matched."</p><span>Month 2 — Hero Statement</span></div>
+    <div class="quote-card"><p>"What Recruiting Should Have Been."</p><span>Month 5 — Hero Statement</span></div>
+  </div>
+
+  <p style="margin:56px 0 0; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#8a8a94; font-weight:800;">Voice floor — never say</p>
+  <div class="floor-list">
+    <span class="floor-chip">trusted by thousands</span>
+    <span class="floor-chip">proven track record</span>
+    <span class="floor-chip">the #1 platform</span>
+    <span class="floor-chip">everyone's using it</span>
+  </div>
+</section>
+
+<section id="imagery" class="grid-wrap">
+  <p class="section-eyebrow">05 &middot; System</p>
+  <h2 class="big">Real photography. Real screenshots. Never a fabricated UI.</h2>
+  <p class="lede">Unlike Quarter Athletic's ghost-mannequin renders, every product proof point here is a genuine screenshot — Verification, Match Factors, Match Preview — composited into editorial photography of real settings. An AI render may never attempt UI, a logo, or a crest.</p>
+
+  <div class="imagery-grid">
+    <div class="imagery-card i1"><b>Trust</b><span>Near-black, high contrast</span></div>
+    <div class="imagery-card i2"><b>Athlete side</b><span>Warm gold rim light</span></div>
+    <div class="imagery-card i3"><b>Coach side</b><span>Cool blue ambient</span></div>
+    <div class="imagery-card i4"><b>Product</b><span>Green reserved for in-app only</span></div>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Reserve a clean empty panel in every prompt for the real screenshot to composite in afterward</li>
+        <li>Use editorial sports-lifestyle or sports-recruiting photography style, never stock-cliché smiling-at-camera</li>
+        <li>Keep gold lighting for athlete-side scenes, cool blue for coach-side</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Let an AI render attempt any screen content, UI, or logo</li>
+        <li>Mix athlete-gold and coach-blue lighting in the same frame outside the two unified months</li>
+        <li>Show a stat or number the product can't actually back up yet</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Twenty Five Select Brand Guidelines &middot; internal reference, v1 &middot; assets in <code>/Logos</code> and <code>/Typography</code> alongside this file.
+  <br><a class="back-top" href="#top">&uarr; Back to top</a>
+</footer>
+
+</body>
+</html>

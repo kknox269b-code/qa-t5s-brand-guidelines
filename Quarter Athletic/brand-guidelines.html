@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quarter Athletic — Brand Guidelines</title>
+<style>
+  @font-face{ font-family:'QA Championship'; src:url('Typography/Championship.ttf') format('truetype'); }
+  @font-face{ font-family:'QA Blockletter'; src:url('Typography/Blockletter.otf') format('opentype'); }
+  @font-face{ font-family:'QA Racing'; src:url('Typography/Racing Catalogue.ttf') format('truetype'); }
+  @font-face{ font-family:'QA Speed'; src:url('Typography/SpeedRacing.ttf') format('truetype'); }
+  @font-face{ font-family:'QA Akira'; src:url('Typography/Akira Expanded Demo.otf') format('opentype'); }
+  @font-face{ font-family:'QA Modern Serif'; src:url('Typography/Modern Serif.ttf') format('truetype'); }
+  @font-face{ font-family:'QA College Block'; src:url('Typography/collegeb.ttf') format('truetype'); }
+  @font-face{ font-family:'QA College Cond'; src:url('Typography/collegec.ttf') format('truetype'); }
+  @font-face{ font-family:'QA Impact'; src:url('Typography/Impact.ttf') format('truetype'); }
+  @font-face{ font-family:'QA Inter'; src:url('Typography/Inter-ExtraBold.otf') format('opentype'); font-weight:800; }
+  @font-face{ font-family:'QA Nunito'; src:url('Typography/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype-variations'); }
+  @font-face{ font-family:'QA Nippo'; src:url('Typography/Nippo-Variable.ttf') format('truetype-variations'); }
+
+  :root{
+    --navy:#1B2A4E; --navy-deep:#0F1930; --gold:#C8981F; --gold-deep:#8E6E1A;
+    --magenta:#9C2159; --green:#2F5233; --paper:#F7F5F0; --ink:#14141A;
+    --line:rgba(20,20,26,.14); --line-dark:rgba(255,255,255,.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'QA Nunito',"Segoe UI",Arial,sans-serif; line-height:1.4;}
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+
+  /* grid-line texture, Dropbox-style */
+  .grid-wrap{position:relative; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .grid-wrap::before{content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0 24.9%, var(--line) 24.9% 25%, transparent 25%),
+      repeating-linear-gradient(0deg, transparent 0, transparent 100%);
+    background-size:100% 100%;
+  }
+  .grid-wrap.dark::before{background-image:repeating-linear-gradient(90deg, transparent 0 24.9%, var(--line-dark) 24.9% 25%, transparent 25%);}
+
+  /* nav */
+  .navbtn{position:fixed; top:18px; left:18px; z-index:80; width:46px; height:46px; border-radius:50%; border:none; background:var(--gold); color:#fff; font-size:20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25);}
+  .navmenu{position:fixed; top:74px; left:18px; z-index:80; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.18); padding:8px; display:none; flex-direction:column; min-width:200px;}
+  .navmenu.open{display:flex;}
+  .navmenu a{padding:10px 14px; font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:.04em; border-radius:8px; text-decoration:none; color:var(--ink);}
+  .navmenu a:hover{background:var(--paper);}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; background:linear-gradient(160deg,var(--navy) 0%, var(--navy-deep) 100%); color:#fff; min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:0 8vw;}
+  .eyebrow{font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 22px;}
+  .hero h1{font-family:'QA College Block','QA Championship',sans-serif; font-weight:400; font-size:clamp(48px,8vw,124px); line-height:.96; margin:0 0 28px; letter-spacing:-.01em; text-wrap:balance;}
+  .hero p{font-size:clamp(16px,1.6vw,22px); max-width:46ch; color:rgba(255,255,255,.78); margin:0;}
+  .hero-mark{position:absolute; right:8vw; top:50%; transform:translateY(-50%); width:min(30vw,280px); opacity:.94;}
+
+  /* tile nav grid (the Dropbox-style category grid) */
+  .tiles{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:minmax(220px,auto);}
+  @media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr);}}
+  .tile{position:relative; border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; color:#fff; overflow:hidden; transition:transform .18s ease;}
+  .tile:hover{transform:scale(1.015);}
+  .tile h3{margin:0; font-family:'QA College Block',sans-serif; font-weight:400; font-size:26px; letter-spacing:.01em;}
+  .tile span{font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; opacity:.85;}
+  .t-logo{background:var(--navy);}
+  .t-color{background:var(--magenta);}
+  .t-type{background:var(--gold-deep);}
+  .t-voice{background:var(--green);}
+  .t-imagery{background:#14141A;}
+  .t-rules{background:#5C6270;}
+  .t-clear{background:var(--paper); color:var(--ink); grid-column:span 2;}
+  .t-clear h3{font-size:34px;}
+  .tile-icon{font-size:52px; opacity:.9; align-self:flex-end;}
+
+  /* sections */
+  section{padding:120px 8vw; position:relative;}
+  .section-eyebrow{font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-deep); margin:0 0 18px;}
+  h2.big{font-family:'QA College Block',sans-serif; font-weight:400; font-size:clamp(38px,6vw,84px); line-height:1; margin:0 0 40px; max-width:16ch;}
+  .lede{font-size:clamp(16px,1.4vw,20px); max-width:60ch; color:#3A3A44; margin:0 0 56px;}
+
+  /* logo section */
+  .logo-primary{background:var(--navy); border-radius:20px; padding:80px 60px; display:flex; align-items:center; justify-content:center; margin-bottom:40px;}
+  .logo-primary img{max-width:520px; width:100%;}
+  .swatch-row{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:56px;}
+  @media (max-width:900px){.swatch-row{grid-template-columns:repeat(2,1fr);}}
+  .mark-tile{min-width:0; overflow:hidden; border-radius:16px; padding:28px; display:flex; align-items:center; justify-content:center; aspect-ratio:1;}
+  .mark-tile img{width:70%; max-width:100%; height:auto;}
+  .mb-navy{background:var(--navy);} .mb-black{background:#101014;} .mb-gold{background:var(--gold-deep);} .mb-paper{background:#fff; border:1px solid var(--line);} .mb-magenta{background:var(--magenta);}
+  .rules-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:800px){.rules-grid{grid-template-columns:1fr;}}
+  .rule-card{border:1px solid var(--line); border-radius:16px; padding:28px;}
+  .rule-card h4{margin:0 0 14px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;}
+  .rule-card.do h4{color:var(--green);}
+  .rule-card.dont h4{color:#B5342E;}
+  .rule-card ul{margin:0; padding-left:18px; font-size:14.5px; line-height:1.7; color:#3A3A44;}
+
+  /* color section */
+  .color-hero{color:#fff;}
+  .color-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-bottom:56px; border-radius:16px; overflow:hidden;}
+  @media (max-width:800px){.color-grid{grid-template-columns:repeat(2,1fr);}}
+  .color-chip{aspect-ratio:1; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:#fff;}
+  .color-chip b{font-size:15px; text-transform:uppercase; letter-spacing:.04em;}
+  .color-chip span{font-size:13px; font-family:ui-monospace,monospace; opacity:.85; margin-top:4px;}
+  .c-navy{background:var(--navy);} .c-navydeep{background:var(--navy-deep);}
+  .c-magenta{background:var(--magenta);} .c-green{background:var(--green);}
+  .c-gold{background:var(--gold-deep); color:#20160a;} .c-ink{background:var(--ink);}
+  .c-paper{background:var(--paper); color:var(--ink); border:1px solid var(--line);}
+  .c-white{background:#fff; color:var(--ink); border:1px solid var(--line);}
+  .mood-strip{display:flex; gap:0; border-radius:14px; overflow:hidden; margin-top:8px;}
+  .mood-strip div{flex:1; padding:22px 16px; font-size:12.5px; font-weight:700; color:#fff; text-align:center;}
+
+  /* type section */
+  .type-tier{margin-bottom:70px;}
+  .type-tier h4{font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#8a8a94; margin:0 0 26px;}
+  .specimen{border-top:1px solid var(--line); padding:26px 0; display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .specimen .word{font-size:clamp(28px,4vw,52px); line-height:1;}
+  .specimen .meta{font-size:12.5px; color:#8a8a94; font-family:ui-monospace,monospace; white-space:nowrap;}
+
+  /* voice section */
+  .voice-dark{background:var(--ink); color:#fff;}
+  .voice-dark .section-eyebrow{color:var(--gold);}
+  .voice-arc{display:flex; gap:0; margin:40px 0 60px; border-radius:14px; overflow:hidden;}
+  .voice-arc div{flex:1; padding:24px 14px; text-align:center; font-size:12.5px; font-weight:700; color:#fff;}
+  .voice-arc div small{display:block; font-weight:400; opacity:.75; margin-top:4px; font-size:11px;}
+  .quote-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line-dark); border-radius:14px; overflow:hidden;}
+  @media (max-width:900px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-card{background:#1B1B22; padding:32px 26px;}
+  .quote-card p{font-size:19px; font-weight:700; margin:0 0 8px;}
+  .quote-card span{font-size:11.5px; color:#9a9aa4; text-transform:uppercase; letter-spacing:.06em;}
+  .floor-list{margin-top:56px; display:flex; gap:12px; flex-wrap:wrap;}
+  .floor-chip{border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:10px 18px; font-size:13px; text-decoration:line-through; color:#c9c9d2;}
+
+  /* imagery section */
+  .imagery-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:2px; margin-bottom:56px; border-radius:14px; overflow:hidden;}
+  @media (max-width:900px){.imagery-grid{grid-template-columns:repeat(2,1fr);}}
+  .imagery-card{aspect-ratio:3/4; background:var(--navy); color:#fff; padding:18px; display:flex; flex-direction:column; justify-content:flex-end;}
+  .imagery-card b{font-size:12.5px; text-transform:uppercase; letter-spacing:.04em;}
+  .imagery-card span{font-size:11px; opacity:.75; margin-top:4px;}
+  .m1{background:linear-gradient(160deg,#1B2A4E,#0F1930);}
+  .m2{background:linear-gradient(160deg,#9C2159,#5c1334);}
+  .m3{background:linear-gradient(160deg,#2F5233,#16281a);}
+  .m4{background:linear-gradient(160deg,#8E6E1A,#4d3b0e);}
+  .m5{background:linear-gradient(160deg,#1B2A4E,#9C2159);}
+
+  footer{padding:60px 8vw 100px; font-size:13px; color:#8a8a94; border-top:1px solid var(--line);}
+  .back-top{display:inline-block; margin-top:16px; font-weight:800; text-decoration:none; color:var(--navy);}
+</style>
+</head>
+<body>
+
+<button class="navbtn" onclick="document.getElementById('navmenu').classList.toggle('open')">&#9776;</button>
+<div class="navmenu" id="navmenu">
+  <a href="#logo">Logo</a>
+  <a href="#color">Color</a>
+  <a href="#type">Typography</a>
+  <a href="#voice">Voice &amp; Tone</a>
+  <a href="#imagery">Imagery</a>
+  <a href="../../../qa-ts-brand-site/index.html">&larr; Strategy Doc</a>
+</div>
+
+<div class="hero grid-wrap dark" style="border:none;">
+  <p class="eyebrow">Brand Guidelines &middot; v1</p>
+  <h1>Not a jersey<br>company.</h1>
+  <p>A network built on truth — manufacturing, culture, and ten sports held to one standard. This is how that standard shows up: the mark, the palette, the type, the voice, and the imagery, in one place.</p>
+  <img class="hero-mark" src="Logos/QA Circle Gold.png" alt="Quarter Athletic circle mark">
+</div>
+
+<div class="tiles">
+  <a class="tile t-logo" href="#logo"><span>01</span><h3>Logo</h3><div class="tile-icon">&#9711;</div></a>
+  <a class="tile t-color" href="#color"><span>02</span><h3>Color</h3><div class="tile-icon">&#9679;</div></a>
+  <a class="tile t-type" href="#type"><span>03</span><h3>Typography</h3><div class="tile-icon">Aa</div></a>
+  <a class="tile t-voice" href="#voice"><span>04</span><h3>Voice &amp; Tone</h3><div class="tile-icon">&#8220;&#8221;</div></a>
+  <a class="tile t-imagery" href="#imagery"><span>05</span><h3>Imagery</h3><div class="tile-icon">&#9634;</div></a>
+  <a class="tile t-rules" href="#logo"><span>06</span><h3>Usage Rules</h3><div class="tile-icon">&#128274;</div></a>
+  <div class="tile t-clear"><h3>One system, five sports earning their way in — rugby proven, lacrosse and baseball staged deliberately.</h3><span>The Roadmap</span></div>
+</div>
+
+<section id="logo" class="grid-wrap">
+  <p class="section-eyebrow">01 &middot; System</p>
+  <h2 class="big">The mark carries the truth. Never redraw it.</h2>
+  <p class="lede">The wordmark and the QA circle are the only two approved forms. Both come from the same geometric structure — sharp terminals, no rounded joins — so the mark reads as engineered, not decorated.</p>
+
+  <div class="logo-primary">
+    <img src="Logos/Quarter Athletic Gold.png" alt="Quarter Athletic primary wordmark">
+  </div>
+
+  <div class="swatch-row">
+    <div class="mark-tile mb-navy"><img src="Logos/QA Circle Gold.png" alt="QA circle gold on navy"></div>
+    <div class="mark-tile mb-black"><img src="Logos/QA Circle White.png" alt="QA circle white on black"></div>
+    <div class="mark-tile mb-gold"><img src="Logos/QA Circle Black.png" alt="QA circle black on gold"></div>
+    <div class="mark-tile mb-paper"><img src="Logos/QA Circle Blue.png" alt="QA circle blue on white"></div>
+    <div class="mark-tile mb-magenta"><img src="Logos/QA Circle White.png" alt="QA circle white on magenta"></div>
+  </div>
+
+  <div class="swatch-row">
+    <div class="mark-tile mb-navy"><img src="Logos/QUARTER Gold.png" alt="Quarter wordmark half, gold"></div>
+    <div class="mark-tile mb-black"><img src="Logos/ATHLETIC White.png" alt="Athletic wordmark half, white"></div>
+    <div class="mark-tile mb-paper"><img src="Logos/QUARTER Blue.png" alt="Quarter wordmark half, blue"></div>
+    <div class="mark-tile mb-gold"><img src="Logos/ATHLETIC Black.png" alt="Athletic wordmark half, black"></div>
+    <div class="mark-tile mb-magenta"><img src="Logos/QA White.png" alt="QA short mark, white"></div>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Use the gold or white lockup on navy, black, or photographic backgrounds</li>
+        <li>Keep clear space equal to the height of the "Q" on all sides</li>
+        <li>Use the circle mark alone for small spaces — social avatars, favicons, jersey tags</li>
+        <li>Composite the mark in post from the real file — never let an AI render attempt it</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Recolor the mark outside the five approved fills (gold, white, black, blue, red)</li>
+        <li>Stretch, skew, rotate, or add a drop shadow / bevel</li>
+        <li>Place gold on gold, or navy on black — protect the contrast</li>
+        <li>Pair the full wordmark with the circle mark in the same lockup</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="color" class="color-hero" style="background:var(--navy);">
+  <p class="section-eyebrow" style="color:var(--gold);">02 &middot; System</p>
+  <h2 class="big" style="color:#fff;">One accent per month, one register per accent.</h2>
+  <p class="lede" style="color:rgba(255,255,255,.75);">Rugby's navy never disappears — it's the constant underneath. Each month layers in exactly one more color, tied to a single emotional register, never mixed with another month's accent in the same asset.</p>
+
+  <div class="color-grid">
+    <div class="color-chip c-navy"><b>Navy</b><span>#1B2A4E</span></div>
+    <div class="color-chip c-magenta"><b>Magenta</b><span>#9C2159</span></div>
+    <div class="color-chip c-green"><b>Green</b><span>#2F5233</span></div>
+    <div class="color-chip c-gold"><b>Gold</b><span>#8E6E1A</span></div>
+    <div class="color-chip c-navydeep"><b>Navy Deep</b><span>#0F1930</span></div>
+    <div class="color-chip c-ink"><b>Ink</b><span>#14141A</span></div>
+    <div class="color-chip c-paper"><b>Paper</b><span>#F7F5F0</span></div>
+    <div class="color-chip c-white"><b>White</b><span>#FFFFFF</span></div>
+  </div>
+
+  <div class="mood-strip">
+    <div style="background:#1B2A4E;">Month 1<br>Truth, restraint</div>
+    <div style="background:#9C2159;">Month 2<br>Identity, ownership</div>
+    <div style="background:#2F5233;">Month 3<br>Generosity</div>
+    <div style="background:#8E6E1A;">Month 4<br>Commitment</div>
+    <div style="background:linear-gradient(90deg,#1B2A4E,#9C2159,#2F5233,#8E6E1A);">Month 5<br>Confidence</div>
+  </div>
+</section>
+
+<section id="type" class="grid-wrap">
+  <p class="section-eyebrow">03 &middot; System</p>
+  <h2 class="big">A display wardrobe, one body voice.</h2>
+  <p class="lede">Headlines borrow from the athletic-jersey world — bold, condensed, built for a scoreboard. Body copy never competes with it: one quiet, extra-bold grotesque carries every paragraph, every month.</p>
+
+  <div class="type-tier">
+    <h4>Body &amp; UI — always</h4>
+    <div class="specimen"><span class="word" style="font-family:'QA Inter';">Aa Bb Cc — Inter ExtraBold</span><span class="meta">Inter-ExtraBold.otf</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Nunito'; font-weight:800;">Aa Bb Cc — Nunito Sans</span><span class="meta">NunitoSans Variable</span></div>
+  </div>
+
+  <div class="type-tier">
+    <h4>Display wardrobe — pick one per campaign mood, never mix two in the same ad</h4>
+    <div class="specimen"><span class="word" style="font-family:'QA College Block';">QUARTER ATHLETIC</span><span class="meta">College Block</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Championship';">QUARTER ATHLETIC</span><span class="meta">Championship</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Blockletter';">QUARTER ATHLETIC</span><span class="meta">Blockletter</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Racing';">QUARTER ATHLETIC</span><span class="meta">Racing Catalogue</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Speed';">QUARTER ATHLETIC</span><span class="meta">Speed Racing</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Akira';">QUARTER ATHLETIC</span><span class="meta">Akira Expanded</span></div>
+    <div class="specimen"><span class="word" style="font-family:'QA Modern Serif';">Quarter Athletic</span><span class="meta">Modern Serif — earned-heritage moments only</span></div>
+  </div>
+</section>
+
+<section id="voice" class="voice-dark">
+  <p class="section-eyebrow">04 &middot; System</p>
+  <h2 class="big">Truth first. Confidence, never hype.</h2>
+  <p class="lede" style="color:#b8b8c2;">Every word earns its place in the five-stage arc before it's allowed to sound big. Say what's proven. Never say what's borrowed.</p>
+
+  <div class="voice-arc">
+    <div style="background:#1B2A4E;">Credibility<small>real, not styled</small></div>
+    <div style="background:#9C2159;">Identity<small>yours, not ours</small></div>
+    <div style="background:#2F5233;">Community<small>given, not sold</small></div>
+    <div style="background:#8E6E1A;">Loyalty<small>generational, not seasonal</small></div>
+    <div style="background:linear-gradient(90deg,#1B2A4E,#9C2159,#2F5233,#8E6E1A);">Culture<small>bigger than product</small></div>
+  </div>
+
+  <div class="quote-grid">
+    <div class="quote-card"><p>"It Started With a Quarter."</p><span>Month 1 — Hero Statement</span></div>
+    <div class="quote-card"><p>"Your Program. Your Kit."</p><span>Month 2 — Hero Statement</span></div>
+    <div class="quote-card"><p>"More Than a Jersey Company."</p><span>Month 5 — Hero Statement</span></div>
+  </div>
+
+  <p style="margin:56px 0 0; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#9a9aa4; font-weight:800;">Voice floor — never say</p>
+  <div class="floor-list">
+    <span class="floor-chip">cheap</span>
+    <span class="floor-chip">affordable</span>
+    <span class="floor-chip">budget</span>
+    <span class="floor-chip">lowest price</span>
+    <span class="floor-chip">discount</span>
+  </div>
+</section>
+
+<section id="imagery" class="grid-wrap">
+  <p class="section-eyebrow">03 &middot; System</p>
+  <h2 class="big">Ghost-mannequin, always. Never real product photography.</h2>
+  <p class="lede">Every product shot is a photorealistic 3D render of a translucent grey mannequin — never a photograph of real apparel, and never a live athlete wearing product. One production system, reskinned by sport and lit to match that month's register.</p>
+
+  <div class="imagery-grid">
+    <div class="imagery-card m1"><b>Month 1</b><span>Dawn/dusk, still</span></div>
+    <div class="imagery-card m2"><b>Month 2</b><span>Golden hour, dynamic</span></div>
+    <div class="imagery-card m3"><b>Month 3</b><span>Bright midday, real texture</span></div>
+    <div class="imagery-card m4"><b>Month 4</b><span>Matched multi-era light</span></div>
+    <div class="imagery-card m5"><b>Month 5</b><span>Wide, architectural</span></div>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Reserve blank space on every mannequin's chest for the logo — composited in post</li>
+        <li>Keep one focal point per frame; leave the reserved band empty for headline/tagline</li>
+        <li>Reuse a sport's lighting recipe when it reskins into a new sport</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Let an AI render attempt the logo, crest, or any real screenshot</li>
+        <li>Photograph real jerseys or real athletes for product hero shots</li>
+        <li>Mix two months' lighting moods in one composite</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Quarter Athletic Brand Guidelines &middot; internal reference, v1 &middot; assets in <code>/Logos</code> and <code>/Typography</code> alongside this file.
+  <br><a class="back-top" href="#top">&uarr; Back to top</a>
+</footer>
+
+</body>
+</html>
