@@ -17,6 +17,18 @@
   body{margin:0; background:var(--bg); color:var(--paper); font-family:"Segoe UI",-apple-system,Arial,sans-serif; line-height:1.5;}
   img{max-width:100%; display:block;}
   a{color:inherit;}
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important; animation:none !important;} }
+
+  /* scroll reveal + ambient motion */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  @keyframes heroIn{to{opacity:1; transform:translateY(0);}}
+  .hero.stagger-in .eyebrow, .hero.stagger-in h1, .hero.stagger-in > p{opacity:0; transform:translateY(16px); animation:heroIn .75s cubic-bezier(.16,1,.3,1) forwards;}
+  .hero.stagger-in .eyebrow{animation-delay:.05s;}
+  .hero.stagger-in h1{animation-delay:.14s;}
+  .hero.stagger-in > p{animation-delay:.24s;}
+  @keyframes markFloat{0%,100%{transform:translateY(-50%) translateY(0);} 50%{transform:translateY(-50%) translateY(-12px);}}
+  .hero-mark{animation:markFloat 7s ease-in-out infinite;}
 
   .grid-wrap{position:relative; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .grid-wrap::before{content:""; position:absolute; inset:0; pointer-events:none;
@@ -26,8 +38,8 @@
   .grid-wrap.light::before{background-image:repeating-linear-gradient(90deg, transparent 0 24.9%, var(--line-light) 24.9% 25%, transparent 25%);}
 
   .navbtn{position:fixed; top:18px; left:18px; z-index:80; width:46px; height:46px; border-radius:50%; border:none; background:var(--gold); color:#0B0B0E; font-size:20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.4);}
-  .navmenu{position:fixed; top:74px; left:18px; z-index:80; background:var(--card); border:1px solid var(--stroke); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5); padding:8px; display:none; flex-direction:column; min-width:200px;}
-  .navmenu.open{display:flex;}
+  .navmenu{position:fixed; top:74px; left:18px; z-index:80; background:var(--card); border:1px solid var(--stroke); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.5); padding:8px; display:flex; flex-direction:column; min-width:200px; opacity:0; transform:translateY(-8px) scale(.97); pointer-events:none; transition:opacity .16s ease, transform .16s cubic-bezier(.2,.8,.2,1); transform-origin:top left;}
+  .navmenu.open{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
   .navmenu a{padding:10px 14px; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.04em; border-radius:8px; text-decoration:none; color:var(--paper);}
   .navmenu a:hover{background:var(--card2);}
 
@@ -40,10 +52,12 @@
 
   .tiles{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:minmax(220px,auto);}
   @media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr);}}
-  .tile{position:relative; border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; color:#fff; overflow:hidden; transition:transform .18s ease;}
-  .tile:hover{transform:scale(1.015);}
+  .tile{position:relative; border:1px solid var(--line); padding:28px; display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; color:#fff; overflow:hidden; transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease;}
+  .tile:hover{transform:scale(1.015); box-shadow:0 16px 34px -14px rgba(0,0,0,.55);}
   .tile h3{margin:0; font-family:'TS Impact',sans-serif; font-weight:400; font-size:26px; letter-spacing:.01em;}
   .tile span{font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; opacity:.8;}
+  .tile-icon{transition:transform .28s cubic-bezier(.2,.8,.2,1);}
+  .tile:hover .tile-icon{transform:translate(4px,-4px) rotate(8deg);}
   .t-logo{background:#151519;}
   .t-color{background:var(--gold); color:#0B0B0E;}
   .t-type{background:var(--blue);}
@@ -64,7 +78,8 @@
   .logo-primary img{max-width:480px; width:100%;}
   .swatch-row{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:56px;}
   @media (max-width:900px){.swatch-row{grid-template-columns:repeat(2,1fr);}}
-  .mark-tile{min-width:0; overflow:hidden; border-radius:16px; padding:28px; display:flex; align-items:center; justify-content:center; aspect-ratio:1;}
+  .mark-tile{min-width:0; overflow:hidden; border-radius:16px; padding:28px; display:flex; align-items:center; justify-content:center; aspect-ratio:1; transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease;}
+  .mark-tile:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 14px 28px -12px rgba(0,0,0,.5);}
   .mark-tile img{width:55%; max-width:100%; height:auto;}
   .mb-black{background:#0B0B0E; border:1px solid var(--stroke);} .mb-gold{background:var(--gold);} .mb-blue{background:var(--blue);} .mb-paper{background:#fff;}
   .rules-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
@@ -78,7 +93,9 @@
   .color-hero{color:#0B0B0E;}
   .color-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-bottom:56px; border-radius:16px; overflow:hidden;}
   @media (max-width:800px){.color-grid{grid-template-columns:repeat(2,1fr);}}
-  .color-chip{aspect-ratio:1; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:#fff;}
+  .color-chip{aspect-ratio:1; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:#fff; cursor:pointer; transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease;}
+  .color-chip:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 14px 28px -12px rgba(0,0,0,.45);}
+  .color-chip.copied{outline:2px solid rgba(255,255,255,.7); outline-offset:-2px;}
   .color-chip b{font-size:15px; text-transform:uppercase; letter-spacing:.04em;}
   .color-chip span{font-size:13px; font-family:ui-monospace,monospace; opacity:.85; margin-top:4px;}
   .c-gold{background:var(--gold); color:#0B0B0E;} .c-blue{background:var(--blue);}
@@ -99,7 +116,8 @@
   .voice-light .section-eyebrow{color:#B5342E;}
   .quote-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; background:var(--line-light); border-radius:14px; overflow:hidden;}
   @media (max-width:900px){.quote-grid{grid-template-columns:1fr;}}
-  .quote-card{background:#fff; padding:32px 26px;}
+  .quote-card{background:#fff; padding:32px 26px; transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease;}
+  .quote-card:hover{transform:translateY(-4px); box-shadow:0 14px 28px -14px rgba(0,0,0,.25);}
   .quote-card p{font-size:19px; font-weight:800; margin:0 0 8px;}
   .quote-card span{font-size:11.5px; color:#8a8a94; text-transform:uppercase; letter-spacing:.06em;}
   .floor-list{margin-top:56px; display:flex; gap:12px; flex-wrap:wrap;}
@@ -107,7 +125,8 @@
 
   .imagery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-bottom:56px; border-radius:14px; overflow:hidden;}
   @media (max-width:900px){.imagery-grid{grid-template-columns:repeat(2,1fr);}}
-  .imagery-card{aspect-ratio:3/4; color:#fff; padding:18px; display:flex; flex-direction:column; justify-content:flex-end;}
+  .imagery-card{aspect-ratio:3/4; color:#fff; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; transition:transform .2s cubic-bezier(.2,.8,.2,1);}
+  .imagery-card:hover{transform:translateY(-4px);}
   .imagery-card b{font-size:12.5px; text-transform:uppercase; letter-spacing:.04em;}
   .imagery-card span{font-size:11px; opacity:.8; margin-top:4px;}
   .i1{background:linear-gradient(160deg,#151519,#0B0B0E);}
@@ -131,7 +150,7 @@
   <a href="https://kknox269b-code.github.io/-https-github.com-yourname-qa-ts-brand-site/">&larr; Strategy Doc</a>
 </div>
 
-<div class="hero grid-wrap" style="border:none;">
+<div class="hero grid-wrap stagger-in" style="border:none;">
   <p class="eyebrow">Brand Guidelines &middot; v1</p>
   <h1>What recruiting<br>should have <em>been</em>.</h1>
   <p>Verified, not vouched for. Every rule below exists to protect that one claim — the mark, the palette, the type, the voice, and the imagery that make a marketplace feel honest.</p>
@@ -282,6 +301,58 @@
   Twenty Five Select Brand Guidelines &middot; internal reference, v1 &middot; assets in <code>/Logos</code> and <code>/Typography</code> alongside this file.
   <br><a class="back-top" href="#top">&uarr; Back to top</a>
 </footer>
+
+<script>
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(!('IntersectionObserver' in window)) return;
+    var targets = document.querySelectorAll('.tile, .mark-tile, .color-chip, .specimen, .quote-card, .imagery-card, .rule-card, .logo-primary, .side-strip, .type-note, .floor-list');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    targets.forEach(function(el, i){
+      el.classList.add('reveal');
+      el.style.transitionDelay = (Math.min(i % 5, 4) * 0.05) + 's';
+      io.observe(el);
+    });
+  })();
+
+  document.querySelectorAll('.color-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var span = chip.querySelector('span');
+      if(!span) return;
+      var hex = span.textContent;
+      function showCopied(){
+        span.textContent = 'Copied!';
+        chip.classList.add('copied');
+        setTimeout(function(){ span.textContent = hex; chip.classList.remove('copied'); }, 1100);
+      }
+      var ta = document.createElement('textarea');
+      ta.value = hex;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var legacyOk = false;
+      try{ legacyOk = document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      if(legacyOk){ showCopied(); return; }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        var timedOut = false;
+        var timer = setTimeout(function(){ timedOut = true; }, 800);
+        navigator.clipboard.writeText(hex).then(function(){
+          clearTimeout(timer);
+          if(!timedOut) showCopied();
+        }).catch(function(){ clearTimeout(timer); });
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
